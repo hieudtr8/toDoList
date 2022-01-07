@@ -1,0 +1,160 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.box {
+    width: 550px;
+    margin: 0px auto;
+    text-align: center;
+    box-shadow: 10px 10px 50px;
+    border-radius: 50px;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#add-new {
+    position: relative;
+}
+
+h1.title {
+    color: #3F7BC2;
+    font-weight: 400;
+    display: inline-block;
+}
+
+img {
+    height: 32px;
+    width: auto;
+}
+
+input[type=text] {
+    display: inline-block;
+    width: 440px;
+    height: 35px;
+    border: 1px solid #3F7BC2;
+    box-sizing: border-box;
+    padding: 12px 25px;
+    font-size: 20px;
+    position: relative;
+}
+
+input:focus {
+    outline: none;
+}
+
+.add-new input:focus {
+    outline: none;
+}
+
+input::placeholder {
+    font-size: 20px;
+    color: #3F7BC2;
+}
+
+button {
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 0%;
+    right: 10%;
+    color: white;
+    background-color: #3F7BC2;
+    padding: 3px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    margin: 0px 50px;
+    padding-left: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+li.task {
+    font-size: 20px;
+    padding: 5px 0px;
+    margin: 20px 0px;
+    border-width: thin;
+    display: flex;
+    position: relative;
+}
+
+
+span.close {
+    color: red;
+    padding: 5px;
+    font-weight: 900;
+    position: absolute;
+    right: 0;
+    bottom: 0%;
+    cursor: pointer;
+}
+
+input[type=checkbox] {
+    margin: 5px;
+}
+
+@keyframes selected {
+    from {
+        text-decoration-color: transparent;
+    }
+
+    to {
+        text-decoration-color: auto;
+    }
+}
+
+.selected {  
+    text-decoration: line-through;
+    animation: strike 4s linear;
+  }
+
+
+span.task-name {
+    padding: 0px 5px;
+
+}
+
+/* span.task-name::before {
+    content: " ";
+    transition: inherit;
+
+} */
+
+/* li.selected span.task-name::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0;
+    border-bottom: 1px solid red;
+    width: 100%;
+    transition: inherit;
+} */
+
+/* .selected {
+    transition: 2s;
+    text-decoration: line-through;
+} */
+/* .selected {
+    position: relative;
+}
+
+.selected:before {
+    content:" ";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    border-bottom: 1px solid red;
+    width: 100%;
+    transition: all 2s;
+} */
+
+/* .selected:hover:before {
+     left: -120%
+} */
