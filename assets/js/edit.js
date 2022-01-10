@@ -3,7 +3,8 @@ const base_url = window.location.href;
 let url = new URL(base_url);
 let id = url.searchParams.get("id")
 let currentTask = {};
-
+const originURL = window.location.origin + "/toDoList"
+document.getElementById('back-to-main').href = originURL
 // Get current task by id
 for (var i = 0; i < listTask.length; i++) {
     if (listTask[i].id == id) {

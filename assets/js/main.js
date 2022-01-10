@@ -2,6 +2,8 @@ let listTask = [];
 
 let showTasks = "";
 
+const base_url_main = window.location.href;
+
 // Show inistal list task
 if (localStorage.getItem("listTask") !== null) {
     loadLocalStorage();
@@ -71,8 +73,7 @@ function checkTask (id) {
 }
 
 function showListTask (task) {
-    const base_url = window.location.origin;
-    editURL = base_url + "/edit.html" + "?id=" + task.id;
+    editURL = base_url_main + "edit.html" + "?id=" + task.id;
     showTasks += " <li class='task'> <input type='checkbox' id='" + task.id + "' value='" + task.id + "' onclick='checkTask(" + task.id + ")' >  <span class='task-name'>"
         + task.name + "</span> <a class='edit' href='" + editURL + "' > <i class='fas fa-edit' onclick='editTask(" + task.id + ")'></i> </a> </span> <i class='fas fa-trash-alt' onclick='removeTask(" + task.id + ")'></i> </li>";
 };
