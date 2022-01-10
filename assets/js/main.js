@@ -3,10 +3,10 @@ let listTask = [];
 let showTasks = "";
 
 // Show inistal list task
-
 if (localStorage.getItem("listTask") !== null) {
     loadLocalStorage();
 }
+
 // Check status of each tasks if done
 loadCheckedTasks();
 
@@ -67,24 +67,14 @@ function checkTask (id) {
         }
     }
     updateLocalStorage();
-    for (var i = 0; i < listTask.length; i++) {
-        id = checkboxes[i].id
-        if (listTask[i].id === id) {
-            if (listTask[i].status) {
-                document.getElementById(id).checked = true;
-                Li = document.getElementById(id).parentElement;
-                Li.classList.add("selected")
-            } else {
-                document.getElementById(id).checked = false;
-                Li = document.getElementById(id).parentElement;
-                Li.classList.remove("selected")
-            }
-        }
-    }
+    loadCheckedTasks();
 }
+
 function showListTask (task) {
+    const base_url = window.location.origin;
+    editURL = base_url + "/edit.html" + "?id=" + task.id;
     showTasks += " <li class='task'> <input type='checkbox' id='" + task.id + "' value='" + task.id + "' onclick='checkTask(" + task.id + ")' >  <span class='task-name'>"
-        + task.name + "</span> <span class='close' onclick='removeTask(" + task.id + ")'>x</span> </li>";
+        + task.name + "</span> <a class='edit' href='" + editURL + "' > <i class='fas fa-edit' onclick='editTask(" + task.id + ")'></i> </a> </span> <i class='fas fa-trash-alt' onclick='removeTask(" + task.id + ")'></i> </li>";
 };
 
 function updateLocalStorage () {
@@ -100,7 +90,6 @@ function loadCheckedTasks () {
     for (var i = 0; i < listTask.length; i++) {
         id = listTask[i].id
         if (listTask[i].id === id) {
-            console.log(listTask[i].id);
             if (listTask[i].status) {
                 document.getElementById(id).checked = true;
                 Li = document.getElementById(id).parentElement;
@@ -113,3 +102,4 @@ function loadCheckedTasks () {
         }
     }
 }
+

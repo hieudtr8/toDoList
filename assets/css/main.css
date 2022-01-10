@@ -7,13 +7,19 @@ body {
     margin: 0px auto;
     text-align: center;
     box-shadow: 10px 10px 50px;
-    border-radius: 50px;
+    border-radius: 30px;
 }
 
 .header {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.header svg.fa-edit {
+    font-size: 30px;
+    color: #3F7BC2;
+    padding-right: 5px;
 }
 
 #add-new {
@@ -26,21 +32,22 @@ h1.title {
     display: inline-block;
 }
 
-img {
-    height: 32px;
-    width: auto;
+svg.fa-check-square {
+    font-size: 30px;
+    color: #3F7BC2;
+    padding-right: 5px;
 }
 
-input[type=text] {
+input#input-task {
     display: inline-block;
     width: 440px;
     height: 35px;
     border: 1px solid #3F7BC2;
     box-sizing: border-box;
     padding: 12px 25px;
-    font-size: 20px;
+    font-size: 16px;
     position: relative;
-    border-radius: 50px;
+    border-radius: 5px;
 }
 
 input:focus {
@@ -52,23 +59,23 @@ input:focus {
 }
 
 input::placeholder {
-    font-size: 20px;
+    font-size: 16px;
     color: #3F7BC2;
 }
 
-button {
+button.add {
     outline: none;
     border: none;
     position: absolute;
-    top: 0%;
-    right: 10%;
-    color: white;
-    background-color: #3F7BC2;
+    top: -17%;
+    right: 9%;
+    color: #3F7BC2;
+    background-color: transparent;
     padding: 3px;
-    font-size: 25px;
+    font-size: 39px;
     cursor: pointer;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+    /* border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px; */
 }
 
 ul {
@@ -88,14 +95,21 @@ li.task {
     position: relative;
 }
 
+a.edit svg.fa-edit {
+    color: #3F7BC2;
+    position: absolute;
+    right: 6%;
+    bottom: 20%;
+    cursor: pointer;
+}
 
-span.close {
+svg.fa-trash-alt {
     color: red;
     padding: 5px;
     font-weight: 900;
     position: absolute;
     right: 0;
-    bottom: 0%;
+    bottom: 5%;
     cursor: pointer;
 }
 
@@ -113,15 +127,17 @@ input[type=checkbox] {
     }
 }
 
-.selected {  
+.selected {
     text-decoration: line-through;
     animation: strike 4s linear;
-  }
+    color: #3F7BC2;
+    transition: all 0.5s;
+}
 
 
 span.task-name {
     padding: 0px 5px;
-
+    font-size: 18px;
 }
 
 /* span.task-name::before {

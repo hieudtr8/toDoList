@@ -7,18 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/img/favicon.png">
     <link rel="stylesheet" href="assets/css/main.css">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="assets/css/all.css">
     <title>To do list</title>
 </head>
 
 <body>
     <div class='box'>
         <div class="header">
-            <img src="assets/img/favicon.png" alt="">
+            <i class="fas fa-check-square"></i>
             <h1 class='title'> My Todo list</h1>
         </div>
         <div id="add-new">
-            <input type="text" name="input" id="input" placeholder='Add new'>
-            <button onclick="addTask()">Add task</button>
+            <input type="text" name="input" id="input-task" placeholder='Add new'>
+            <button class='add' onclick="addTask()"><i class="fas fa-plus-square"></i></button>
         </div>
         <div>
             <ul id="list_tasks">
@@ -31,3 +33,4 @@
 </html>
 
 <script type="text/javascript" src="assets/js/main.js"></script>
+<script type="text/javascript" src="assets/js/all.js"></script>
