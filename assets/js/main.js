@@ -2,12 +2,13 @@ let listTask = [];
 
 let showTasks = "";
 
-if (localStorage.getItem("listTask") !== null) listTask = JSON.parse(localStorage.listTask);
+// Show inistal list task
 
-storedTasks = JSON.parse(localStorage.listTask);
-storedTasks.forEach(showListTask);
-document.getElementById("list_tasks").innerHTML = showTasks
-showTasks = "";
+if (localStorage.getItem("listTask") !== null) {
+    loadLocalStorage();
+}
+// Check status of each tasks if done
+loadCheckedTasks();
 
 function addTask () {
     let task = document.getElementById("input").value;
@@ -15,7 +16,6 @@ function addTask () {
         alert("Please input task name before adding")
     else {
         var taskObj = {};
-
         if (localStorage.getItem("listTask") === null || listTask.length == 0) {
             id = 0;
         } else {
@@ -26,55 +26,90 @@ function addTask () {
         taskObj['status'] = false
         listTask.push(taskObj);
         if (localStorage.getItem("listTask") === null) {
-            localStorage.setItem("listTask", JSON.stringify(listTask));
+            updateLocalStorage();
         } else {
-            storedTasks.push(taskObj);
-            localStorage.setItem("listTask", JSON.stringify(storedTasks));
+            updateLocalStorage();
         }
         document.getElementById('input').value = null
     }
-    storedTasks = JSON.parse(localStorage.listTask);
-    storedTasks.forEach(showListTask);
-    document.getElementById("list_tasks").innerHTML = showTasks
-    showTasks = "";
+    loadLocalStorage();
+    loadCheckedTasks();
 }
 
 function removeTask (id) {
-    var i = 0;
-    while (i < storedTasks.length) {
-        if (storedTasks[i].id === id) {
-            storedTasks.splice(i, 1);
-        } else {
-            ++i;
+    if (confirm("Do to really want to delete this task?")) {
+        var i = 0;
+        while (i < listTask.length) {
+            if (listTask[i].id === id) {
+                listTask.splice(i, 1);
+            } else {
+                ++i;
+            }
         }
+        updateLocalStorage();
     }
-    localStorage.setItem("listTask", JSON.stringify(storedTasks));
-    storedTasks.forEach(showListTask);
-    document.getElementById("list_tasks").innerHTML = showTasks
-    showTasks = ""
+    loadLocalStorage();
+    loadCheckedTasks();
 }
 function checkTask (id) {
-    Li = document.getElementById(id);
-    Li.classList.toggle("selected")
+    for (var i = 0; i < listTask.length; i++) {
+        if (listTask[i].id === id) {
+            listTask[i].status = !listTask[i].status
+            if (listTask[i].status) {
+                document.getElementById(id).checked = true;
+                Li = document.getElementById(id).parentElement;
+                Li.classList.add("selected")
+            } else {
+                Li = document.getElementById(id).parentElement;
+                Li.classList.remove("selected")
+                document.getElementById(id).checked = false;
+            }
+        }
+    }
+    updateLocalStorage();
+    for (var i = 0; i < listTask.length; i++) {
+        id = checkboxes[i].id
+        if (listTask[i].id === id) {
+            if (listTask[i].status) {
+                document.getElementById(id).checked = true;
+                Li = document.getElementById(id).parentElement;
+                Li.classList.add("selected")
+            } else {
+                document.getElementById(id).checked = false;
+                Li = document.getElementById(id).parentElement;
+                Li.classList.remove("selected")
+            }
+        }
+    }
 }
 function showListTask (task) {
-    showTasks += " <li class='task'  id='" + task.id + "'> <input type='checkbox' value='" + task.id + "' onclick='checkTask(" + task.id + ")' >  <span class='task-name'>"
+    showTasks += " <li class='task'> <input type='checkbox' id='" + task.id + "' value='" + task.id + "' onclick='checkTask(" + task.id + ")' >  <span class='task-name'>"
         + task.name + "</span> <span class='close' onclick='removeTask(" + task.id + ")'>x</span> </li>";
 };
 
 function updateLocalStorage () {
-    localStorage.setItem("listTask", JSON.stringify(storedTasks));
+    localStorage.setItem("listTask", JSON.stringify(listTask));
 }
-function getLocalStorage () {
-
+function loadLocalStorage () {
+    listTask = JSON.parse(localStorage.listTask);
+    listTask.forEach(showListTask);
+    document.getElementById("list_tasks").innerHTML = showTasks
+    showTasks = "";
 }
-
-// var checkedboxs = document.querySelectorAll('input[type=checkbox]:checked')
-// console.log(checkedboxs
-// var list = document.querySelector('input[type=checkbox]');
-// list.addEventListener('click', function(ev) {
-//     if (ev.target.tagName === 'LI') {
-//       ev.target.classList.toggle('checked');
-//       console.log(ev);
-//     }
-//   }, false);
+function loadCheckedTasks () {
+    for (var i = 0; i < listTask.length; i++) {
+        id = listTask[i].id
+        if (listTask[i].id === id) {
+            console.log(listTask[i].id);
+            if (listTask[i].status) {
+                document.getElementById(id).checked = true;
+                Li = document.getElementById(id).parentElement;
+                Li.classList.add("selected")
+            } else {
+                document.getElementById(id).checked = false;
+                Li = document.getElementById(id).parentElement;
+                Li.classList.remove("selected")
+            }
+        }
+    }
+}
