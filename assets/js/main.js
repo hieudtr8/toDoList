@@ -13,11 +13,11 @@ if (localStorage.getItem("listTask") !== null) {
 loadCheckedTasks();
 
 function addTask () {
-    let task = document.getElementById("input").value;
+    let task = document.getElementById("input-task").value;
     if (task == '')
         alert("Please input task name before adding")
     else {
-        var taskObj = {};
+        let taskObj = {};
         if (localStorage.getItem("listTask") === null || listTask.length == 0) {
             id = 0;
         } else {
@@ -32,7 +32,7 @@ function addTask () {
         } else {
             updateLocalStorage();
         }
-        document.getElementById('input').value = null
+        document.getElementById('input-task').value = null
     }
     loadLocalStorage();
     loadCheckedTasks();
@@ -40,7 +40,7 @@ function addTask () {
 
 function removeTask (id) {
     if (confirm("Do to really want to delete this task?")) {
-        var i = 0;
+        let i = 0;
         while (i < listTask.length) {
             if (listTask[i].id === id) {
                 listTask.splice(i, 1);
@@ -54,7 +54,7 @@ function removeTask (id) {
     loadCheckedTasks();
 }
 function checkTask (id) {
-    for (var i = 0; i < listTask.length; i++) {
+    for (let i = 0; i < listTask.length; i++) {
         if (listTask[i].id === id) {
             listTask[i].status = !listTask[i].status
             if (listTask[i].status) {
@@ -88,7 +88,7 @@ function loadLocalStorage () {
     showTasks = "";
 }
 function loadCheckedTasks () {
-    for (var i = 0; i < listTask.length; i++) {
+    for (let i = 0; i < listTask.length; i++) {
         id = listTask[i].id
         if (listTask[i].id === id) {
             if (listTask[i].status) {

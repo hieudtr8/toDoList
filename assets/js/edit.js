@@ -6,16 +6,12 @@ let currentTask = {};
 const originURL = window.location.origin + "/toDoList"
 document.getElementById('back-to-main').href = originURL
 // Get current task by id
-for (var i = 0; i < listTask.length; i++) {
-    if (listTask[i].id == id) {
-        currentTask = listTask[i];
-    }
-}
-loadValue();
-function saveEdit () {
+loadCurrentTask();
+
+function Save () {
     inputName = document.getElementById("task-name").value;
     inputStatus = document.getElementById("task-status").value;
-    for (var i = 0; i < listTask.length; i++) {
+    for (let i = 0; i < listTask.length; i++) {
         if (listTask[i].id == id) {
             listTask[i].name = inputName;
             listTask[i].status = inputStatus;
@@ -25,7 +21,12 @@ function saveEdit () {
     alert("Update successfully!")
 }
 
-function loadValue () {
+function loadCurrentTask () {
+    for (let i = 0; i < listTask.length; i++) {
+        if (listTask[i].id == id) {
+            currentTask = listTask[i];
+        }
+    }
     document.getElementById("task-name").value = currentTask.name;
     document.getElementById("task-status").value = currentTask.status;
 }
