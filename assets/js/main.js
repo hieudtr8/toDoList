@@ -41,7 +41,7 @@ function addTask () {
             updateLocalStorage();
         }
         document.getElementById('input-task').value = null
-        // window.location.reload();
+        window.location.reload();
     }
     loadLocalStorage();
     loadCheckedTasks();
@@ -62,7 +62,7 @@ function removeTask (id) {
     }
     loadLocalStorage();
     loadCheckedTasks();
-    // window.location.reload();
+    window.location.reload();
 }
 function checkTask (id) {
     for (let i = 0; i < listTask.length; i++) {
