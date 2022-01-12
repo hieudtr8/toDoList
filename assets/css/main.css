@@ -24,6 +24,7 @@ body {
 
 #add-new {
     position: relative;
+    margin-bottom: 15px;
 }
 
 h1.title {
@@ -89,10 +90,15 @@ ul {
 li.task {
     font-size: 20px;
     padding: 5px 0px;
-    margin: 20px 0px;
+    margin-bottom: 15px ;
     border-width: thin;
     display: flex;
     position: relative;
+}
+
+
+li.task.dragging {
+    opacity: .5;
 }
 
 a.edit svg.fa-edit {
@@ -127,7 +133,7 @@ input[type=checkbox] {
     }
 }
 
-.selected {
+li.selected span {
     text-decoration: line-through;
     animation: strike 4s linear;
     color: #3F7BC2;

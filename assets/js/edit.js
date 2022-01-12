@@ -10,7 +10,7 @@ loadCurrentTask();
 
 function Save () {
     inputName = document.getElementById("task-name").value;
-    inputStatus = document.getElementById("task-status").value;
+    inputStatus = (document.getElementById("task-status").value == "true");
     for (let i = 0; i < listTask.length; i++) {
         if (listTask[i].id == id) {
             listTask[i].name = inputName;
