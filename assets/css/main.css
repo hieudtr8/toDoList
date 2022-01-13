@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto';
 }
 
 .box {
@@ -89,38 +89,72 @@ ul {
 
 li.task {
     font-size: 20px;
-    padding: 5px 0px;
-    margin-bottom: 15px ;
+    padding: 12px;
+    margin-bottom: 15px;
     border-width: thin;
     display: flex;
     position: relative;
+    cursor: pointer;
+    border: 1px solid transparent;
 }
 
+li.dragging {
+    cursor: grab;
+    border: 1px solid #3F7BC2;
+    transition: all 0.5s;
+}
 
+li.task:after {
+    content: 'drag me';
+    color: #3F7BC2;
+    right: 6px;
+    bottom: -12px;
+    font-size: 12px;
+    position: absolute;
+    cursor: pointer;
+    line-height: 5;
+    transition: all 200ms;
+    transition-timing-function: cubic-bezier(0.48, 0.72, 0.62, 1.50);
+    transform: translateX(0%);
+    opacity: 0;
+}
+
+li.task:hover:after {
+    opacity: 1;
+    transform: translate(-120%);
+}
+li.task.dragging:hover:after{
+    opacity: 0;
+}
 li.task.dragging {
     opacity: .5;
 }
 
-a.edit svg.fa-edit {
-    color: #3F7BC2;
+a.edit {
     position: absolute;
     right: 6%;
     bottom: 20%;
+}
+
+a.edit svg.fa-edit {
+    color: #3F7BC2;
     cursor: pointer;
+}
+
+span.remove-task {
+    position: absolute;
+    right: 0;
+    bottom: 5%;
 }
 
 svg.fa-trash-alt {
     color: red;
     padding: 5px;
-    font-weight: 900;
-    position: absolute;
-    right: 0;
-    bottom: 5%;
     cursor: pointer;
 }
 
 input[type=checkbox] {
-    margin: 5px;
+    margin: 0px;
 }
 
 @keyframes selected {
@@ -144,6 +178,9 @@ li.selected span {
 span.task-name {
     padding: 0px 5px;
     font-size: 18px;
+    bottom: 19%;
+    left: 6%;
+    position: absolute;
 }
 
 /* span.task-name::before {

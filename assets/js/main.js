@@ -14,7 +14,7 @@ loadCheckedTasks();
 
 function addTask () {
     let task = document.getElementById("input-task").value;
-    if (task == '')
+    if (!task)
         alert("Please input task name before adding")
     else {
         let taskObj = {};
@@ -85,8 +85,8 @@ function checkTask (id) {
 
 function showListTask (task) {
     editURL = base_url_main + "edit.html" + "?id=" + task.id;
-    showTasks += " <li class='task' draggable='true' id='" + task.id + "'> <input type='checkbox' id='" + task.id + "' value='" + task.id + "' onclick='checkTask(" + task.id + ")' >  <span class='task-name'>"
-        + task.name + "</span> <a class='edit' href='" + editURL + "' > <i class='fas fa-edit' onclick='editTask(" + task.id + ")'></i> </a> </span> <i class='fas fa-trash-alt' onclick='removeTask(" + task.id + ")'></i> </li>";
+    showTasks += " <li class='task' draggable='true' id='" + task.id + "' onclick='checkTask(" + task.id + ")'> <input type='checkbox' id='" + task.id + "' value='" + task.id + "' onclick='checkTask(" + task.id + ")' >  <span class='task-name'>"
+        + task.name + "</span> <a class='edit' href='" + editURL + "' > <i class='fas fa-edit' onclick='editTask(" + task.id + ")'></i> </a> </span> <span class ='remove-task'> <i class='fas fa-trash-alt' onclick='removeTask(" + task.id + ")'></i></span> </li>";
 };
 
 // Drag & Drop 
@@ -102,7 +102,7 @@ draggables.forEach(draggable => {
     })
 })
 ul.addEventListener('dragover', e => {
-    e.preventDefault;
+    e.preventDefault();
     const afterElement = getDragAfterElement(ul, e.clientY);
     const dragging = document.querySelector('.dragging');
     let reOrderedList = [];
@@ -137,11 +137,6 @@ function getDragAfterElement (ul, y) {
         }
     }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
-function moveInArray (array, from, to) {
-    let item = array.splice(from, 1);
-    array.splice(to, 0, item[0]);
-}
-
 
 function updateLocalStorage () {
     localStorage.setItem("listTask", JSON.stringify(listTask));
